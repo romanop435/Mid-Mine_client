@@ -1,0 +1,43 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #05060f;
+  --foreground: #f4f7fb;
+  --muted: #0f1220;
+  --muted-foreground: #9ca3af;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --ring: rgba(74, 222, 128, 0.3);
+  --radius: 16px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 12px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body, #root {
+    @apply min-h-screen bg-background text-foreground;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  button, input, select, textarea {
+    font: inherit;
+  }
+}

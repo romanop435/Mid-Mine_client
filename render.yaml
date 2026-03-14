@@ -1,0 +1,28 @@
+databases:
+  - name: midmine-postgres
+    databaseName: midmine
+    user: midmine
+    plan: free
+
+services:
+  - type: web
+    name: midmine-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    autoDeploy: true
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: midmine-postgres
+          property: connectionString
+      - key: MIDMINE_JWT_SECRET
+        generateValue: true
+      - key: MIDMINE_ADMIN_EMAIL
+        sync: false
+      - key: MIDMINE_ADMIN_PASSWORD
+        sync: false
